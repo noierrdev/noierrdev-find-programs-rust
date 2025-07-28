@@ -85,14 +85,14 @@ async fn main() -> Result<()> {
 
     // let mut all_tokens=HashMap::new();
 
-    let crypto_provider= crypto_default_provider();
-    crypto_provider.install_default();
+    // let crypto_provider= crypto_default_provider();
+    // crypto_provider.install_default();
     
     
     dotenv::dotenv().ok();
-    let http_client=Client::new();
+    // let http_client=Client::new();
 
-    let http_client_escape=http_client.clone();
+    // let http_client_escape=http_client.clone();
 
 
     //Create web3 connection
