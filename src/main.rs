@@ -94,20 +94,17 @@ async fn main() -> Result<()> {
 
     let http_client_escape=http_client.clone();
 
-    //Initialize wallet from private key of .env
-    let private_key_str = env::var("PRIVATE_KEY").unwrap();
-    let private_key_bytes = bs58::decode(private_key_str)
-        .into_vec().unwrap();
-    let wallet =Arc::new(Keypair::from_bytes(&private_key_bytes).unwrap());
-    let public_key= wallet.pubkey();
-    println!("Public Key: {}", public_key.to_string());
-
-    let wallet_monitor=wallet.clone();
-    let wallet_escape=wallet.clone();
+    // //Initialize wallet from private key of .env
+    // let private_key_str = env::var("PRIVATE_KEY").unwrap();
+    // let private_key_bytes = bs58::decode(private_key_str)
+    //     .into_vec().unwrap();
+    // let wallet =Arc::new(Keypair::from_bytes(&private_key_bytes).unwrap());
+    // let public_key= wallet.pubkey();
+    // println!("Public Key: {}", public_key.to_string());
 
 
     //Create web3 connection
-    let rpc_url = "http://localhost:8899";
+    let rpc_url = env::var("RPC_API").unwrap();
     let commitment = CommitmentConfig::processed();
     let rpc_client = RpcClient::new_with_commitment(rpc_url.to_string(),commitment);
 
