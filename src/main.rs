@@ -94,32 +94,11 @@ async fn main() -> Result<()> {
 
     let http_client_escape=http_client.clone();
 
-    // //Initialize wallet from private key of .env
-    // let private_key_str = env::var("PRIVATE_KEY").unwrap();
-    // let private_key_bytes = bs58::decode(private_key_str)
-    //     .into_vec().unwrap();
-    // let wallet =Arc::new(Keypair::from_bytes(&private_key_bytes).unwrap());
-    // let public_key= wallet.pubkey();
-    // println!("Public Key: {}", public_key.to_string());
-
 
     //Create web3 connection
     let rpc_url = env::var("RPC_API").unwrap();
     let commitment = CommitmentConfig::processed();
     let rpc_client = RpcClient::new_with_commitment(rpc_url.to_string(),commitment);
-
-    let rpc_client_arc=Arc::new(rpc_client);
-    let rpc_client_tpu=Arc::clone(&rpc_client_arc);
-    let rpc_client_jito=Arc::clone(&rpc_client_arc);
-    let rpc_client_escape=Arc::clone(&rpc_client_arc);
-
-    let mut only_one : bool =true;
-
-    let mut tpu_client_config=TpuClientConfig::default();
-    tpu_client_config.fanout_slots=6;
-    let tpu_client=TpuClient::new(rpc_client_arc,"ws://localhost:8900", tpu_client_config)?;
-
-    // swap::send_test_tpu(&tpu_client, &rpc_client_tpu, &wallet).await;
 
     Ok(())
 }
