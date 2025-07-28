@@ -102,7 +102,7 @@ async fn main() -> Result<()> {
 
     let wallet="DdPv8fFjnkE3mLMsbFcH5aRop4ES3SE7VEZ5Ntz7MVVA";
 
-    let balance = rpc_client.get_balance(Pubkey::from_str_const(wallet)).unwrap();
+    let balance = rpc_client.get_balance(&Pubkey::from_str_const(wallet)).unwrap();
     println!("{}", balance);
 
     Ok(())
