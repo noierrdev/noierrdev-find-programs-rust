@@ -100,6 +100,11 @@ async fn main() -> Result<()> {
     let commitment = CommitmentConfig::processed();
     let rpc_client = RpcClient::new_with_commitment(rpc_url.to_string(),commitment);
 
+    let wallet="DdPv8fFjnkE3mLMsbFcH5aRop4ES3SE7VEZ5Ntz7MVVA";
+
+    let balance = rpc_client.get_balance(Pubkey::from_str_const(wallet)).unwrap();
+    println!("{}", balance);
+
     Ok(())
 }
 
